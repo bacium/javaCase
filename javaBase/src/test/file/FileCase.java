@@ -22,7 +22,7 @@ public class FileCase {
                         File wordFile2=new File(path,"2.docx");
                         boolean word2 = wordFile2.createNewFile();
                         if(word1 && word2){
-                            System.out.println("1.docx 和  2.docx创建成功");
+                           System.out.println("1.docx 和  2.docx创建成功");
                         }
                         path=path+"/"+"work";
                         File workDir=new File(path);
@@ -31,7 +31,7 @@ public class FileCase {
                            File abcFile=new File(path,"abc.doc");
                             boolean abcFlag = abcFile.createNewFile();
                             if (abcFlag){
-                                System.out.println("abc.doc创建成功");
+                               System.out.println("abc.doc创建成功");
                             }
 
                         }
@@ -41,17 +41,21 @@ public class FileCase {
                 }
             }
         }
-        File[] files = file.listFiles();
-        outputFile(files);
-
+        listFilesAndDirs(file);
     }
-
-    private static void outputFile(File[] files) {
-        for (File file1 : files) {
-            System.out.println(file1);
-            if (file1.exists()){
-
+    public static void listFilesAndDirs(File file) {
+        if (file == null || !file.exists()) {
+            return;
+        }
+        System.out.println(file.getAbsolutePath());
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            if (files != null) {
+                for (File f : files) {
+                    listFilesAndDirs(f);
+                }
             }
         }
     }
+
 }
