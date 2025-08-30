@@ -1,7 +1,9 @@
 package test.socket.base;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -22,7 +24,9 @@ public class ServerCase {
         while ((b = inputStream.read()) != -1) {
             System.out.print((char) b);
         }
-        inputStream.close();
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(accept.getOutputStream()));
+        writer.write("你是哪位?");
+        writer.close();
         serverSocket.close();
     }
 }
