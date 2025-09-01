@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/javaBase/javaBase.iml" filepath="$PROJECT_DIR$/javaBase/javaBase.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaCase.iml" filepath="$PROJECT_DIR$/javaCase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/logger/logger.iml" filepath="$PROJECT_DIR$/logger/logger.iml" />
     </modules>
   </component>
 </project>
