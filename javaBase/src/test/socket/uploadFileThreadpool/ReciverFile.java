@@ -1,9 +1,12 @@
-package test.socket.uploadFile;
+package test.socket.uploadFileThreadpool;
+
+import test.socket.uploadFileThreadpool.ThreadSocket;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.UUID;
+import java.util.concurrent.*;
 
 /**
  * @Author: bai12
@@ -13,13 +16,21 @@ import java.util.UUID;
  */
 public class ReciverFile {
     public static void main (String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(9999);
-
+        ServerSocket serverSocket = new ServerSocket(10000);
+        ThreadPoolExecutor pool=new ThreadPoolExecutor(
+                3,
+                10,
+                60,
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(5),
+                new ThreadPoolExecutor.AbortPolicy()
+        );
         System.out.println("Waiting for a client ...");
         while (true) {
             Socket socket = serverSocket.accept();
            ThreadSocket ts=new ThreadSocket(socket);
-           new Thread(ts).start();
+           // new Thread(ts).start();
+            pool.submit(ts);
         }
     }
 }
