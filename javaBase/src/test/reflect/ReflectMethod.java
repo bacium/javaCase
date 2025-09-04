@@ -17,10 +17,11 @@ public class ReflectMethod {
         // 2获取类中所有的方法,不包括继承的
         //getDeclaredMethodsFor_getDeclaredMethods(aClass);
         Student instance = (Student) aClass.newInstance();
-        Method function2 = aClass.getMethod("function2");
+        Method function2 = aClass.getDeclaredMethod("function2");
         System.out.println(function2);
         function2.setAccessible(true);
-        function2.invoke(instance);
+        Object result = function2.invoke(instance);
+        System.out.println(result);
 
     }
 
